@@ -3,23 +3,21 @@ package pe.edu.pe.Hospital.Inventory.Management.entities;
 
 import lombok.Data;
 
-
 import javax.persistence.*;
 import java.util.Date;
 
 @Entity
-@Table (name = "brands")
+@Table(name = "brand")
 @Data
 
-
-
 public class Brand {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id_brand;
+    private Integer id;
 
-    @Column(length = 60, nullable = false)
-    private String name_brand;
+    @Column(name = "name_brand",length = 60, nullable = false)
+    private String brandName;
 
     @Column(name = "create_at")
     @Temporal(TemporalType.TIMESTAMP)
@@ -27,6 +25,5 @@ public class Brand {
 
     @Column(length = 1, nullable = false)
     private String status;
-
 
 }

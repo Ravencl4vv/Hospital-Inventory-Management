@@ -10,16 +10,15 @@ import javax.persistence.*;
 import java.util.Date;
 
 @Entity
-@Table (name = "models")
+@Table(name = "model")
 @Data
-
 public class Model {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id_model;
+    private Integer id;
 
-    @Column(length = 60, nullable = false)
-    private String name_model;
+    @Column(name = "name_model", length = 60, nullable = false)
+    private String modelName;
 
     @Column(nullable = false)
     private Integer velocity;
@@ -32,8 +31,6 @@ public class Model {
 
     @Column(nullable = false)
     private Integer tall;
-
-    //Buena Practica DDD
 
     @Column(name = "create_at")
     @Temporal(TemporalType.TIMESTAMP)
