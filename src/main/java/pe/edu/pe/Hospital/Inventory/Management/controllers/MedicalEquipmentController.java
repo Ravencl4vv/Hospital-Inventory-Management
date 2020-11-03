@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
@@ -15,6 +16,10 @@ import pe.edu.pe.Hospital.Inventory.Management.entities.Model;
 import pe.edu.pe.Hospital.Inventory.Management.repositories.MedicalEquipmentRepository;
 import pe.edu.pe.Hospital.Inventory.Management.repositories.ModelRepository;
 
+
+import org.springframework.web.bind.annotation.*;
+import pe.edu.pe.Hospital.Inventory.Management.entities.MedicalEquipment;
+import pe.edu.pe.Hospital.Inventory.Management.entities.Model;
 import pe.edu.pe.Hospital.Inventory.Management.services.MedicalEquipmentService;
 import pe.edu.pe.Hospital.Inventory.Management.services.ModelService;
 
@@ -30,11 +35,12 @@ public class MedicalEquipmentController {
     @Autowired
     private ModelService modelService;
     @Autowired
-    private ModelRepository modelRepository;
+    private MedicalEquipmentService medicalEquipmentService;
 
 
 
-    @GetMapping(path = "/medical_equipments/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
+
+    @GetMapping(path = "/medical-equipments/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<MedicalEquipment> fetchById(@PathVariable("id") Integer id){
         try{
             Optional<MedicalEquipment> optionalMedicalEquipment = medicalEquipmentRepository.findById(id);
@@ -80,6 +86,18 @@ public class MedicalEquipmentController {
             return HttpStatus.NOT_ACCEPTABLE;
         }
 
+    }
+
+
+    @DeleteMapping("/medical-equipments/{id}")
+    public ResponseEntity<MedicalEquipment> deleteById(@PathVariable(name = "id") Integer id) {
+
+        try {
+            return (ResponseEntity<MedicalEquipment>) medicalEquipmentService.deleteById(id);
+
+        } catch (Exception e) {
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
     }
 
 
