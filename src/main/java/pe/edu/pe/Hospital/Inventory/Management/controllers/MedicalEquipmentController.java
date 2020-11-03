@@ -40,7 +40,7 @@ public class MedicalEquipmentController {
 
 
 
-    @GetMapping(path = "/medical-equipments/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
+    @GetMapping(path = "/medical_equipments/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<MedicalEquipment> fetchById(@PathVariable("id") Integer id){
         try{
             Optional<MedicalEquipment> optionalMedicalEquipment = medicalEquipmentRepository.findById(id);
@@ -55,7 +55,7 @@ public class MedicalEquipmentController {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
-    @GetMapping("/medical-equipments")
+    @GetMapping("/medical_equipments")
     public ResponseEntity<List<MedicalEquipment>> findAll() {
         try {
             List<MedicalEquipment> medicalEquipments = medicalEquipmentRepository.findAll();
@@ -76,20 +76,20 @@ public class MedicalEquipmentController {
             model, BindingResult result){
         log.info("Creating Invoice : {}", model);
         if (result.hasErrors()){
-            throw new ResponseStatusException(HttpStatus.NOT_ACCEPTABLE);
+            throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR);
         }
         try {
 
             return modelService.findById(id).map(models -> {model.setModel(models);
                 return medicalEquipmentRepository.save(model);});
         } catch (Exception e) {
-            return HttpStatus.NOT_ACCEPTABLE;
+            return HttpStatus.INTERNAL_SERVER_ERROR;
         }
 
     }
 
 
-    @DeleteMapping("/medical-equipments/{id}")
+    @DeleteMapping("/medical_equipments/{id}")
     public ResponseEntity<MedicalEquipment> deleteById(@PathVariable(name = "id") Integer id) {
 
         try {
