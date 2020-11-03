@@ -110,6 +110,7 @@ public class ModelController {
                 return  ResponseEntity.ok(currentModel);
             }
         } catch (Exception e) {
+
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
 
