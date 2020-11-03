@@ -2,8 +2,8 @@ package pe.edu.pe.Hospital.Inventory.Management.services.impls;
 
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 import pe.edu.pe.Hospital.Inventory.Management.entities.Brand;
 import pe.edu.pe.Hospital.Inventory.Management.repositories.BrandRepository;
 import pe.edu.pe.Hospital.Inventory.Management.services.BrandService;
@@ -41,12 +41,15 @@ public class BrandServiceImpl implements BrandService {
     }
 
     @Override
-    public void deleteById(Integer integer) throws Exception {
+    public ResponseEntity<?> deleteById(Integer integer) throws Exception {
         brandRepository.deleteById(integer);
+        return null;
     }
 
     @Override
     public Optional<Brand> findByBrandName(String nameBrand) throws Exception {
         return brandRepository.findByBrandName(nameBrand);
     }
+
+
 }

@@ -1,6 +1,7 @@
 package pe.edu.pe.Hospital.Inventory.Management.services.impls;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import pe.edu.pe.Hospital.Inventory.Management.entities.MedicalEquipment;
 import pe.edu.pe.Hospital.Inventory.Management.repositories.MedicalEquipmentRepository;
@@ -37,7 +38,8 @@ public class MedicalEquipmentServiceImpl implements MedicalEquipmentService {
     }
 
     @Override
-    public void deleteById(Integer integer) throws Exception {
+    public ResponseEntity<?> deleteById(Integer integer) throws Exception {
         medicalEquipmentRepository.deleteById(integer);
+        return null;
     }
 }

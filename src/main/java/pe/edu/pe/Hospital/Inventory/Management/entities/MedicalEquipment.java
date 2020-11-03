@@ -1,7 +1,10 @@
 package pe.edu.pe.Hospital.Inventory.Management.entities;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
 
 import javax.persistence.*;
 import java.util.Date;
@@ -25,10 +28,10 @@ public class MedicalEquipment {
     @Column(length = 1, nullable = false)
     private String status;
 
-    @OneToMany(fetch = FetchType.LAZY)
-    private List<Model> model;
-
-
-
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "id_model", nullable = false)
+    @OnDelete(action = OnDeleteAction.CASCADE)
+    @JsonIgnore
+    private Model model;
 
 }
