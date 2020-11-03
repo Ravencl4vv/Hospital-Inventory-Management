@@ -19,7 +19,7 @@ public class MedicalEquipmentController {
     private MedicalEquipmentService medicalEquipmentService;
 
 
-    @GetMapping(path = "/medical-equipment/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
+    @GetMapping(path = "/medical-equipments/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<MedicalEquipment> fetchById(@PathVariable("id") Integer id){
         try{
             Optional<MedicalEquipment> optionalMedicalEquipment = medicalEquipmentService.findById(id);
@@ -35,7 +35,7 @@ public class MedicalEquipmentController {
         }
     }
 
-    @DeleteMapping("/medical-equipment/{id}")
+    @DeleteMapping("/medical-equipments/{id}")
     public ResponseEntity<MedicalEquipment> deleteById(@PathVariable(name = "id") Integer id) {
 
         try {
